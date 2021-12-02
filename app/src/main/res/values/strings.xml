@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Paprika</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="welcome_02">Hola, bienvenido de nuevo</string>
+
+
+    <!--LOGIN-->
+    <string name="user_email_login">Email</string>
+    <string name="password_login">Password</string>
+    <string name="forgot_password">Olvide mi contraseña</string>
+    <string name="login_button">Iniciar Sesion</string>
+    <string name="register_button">No tengo una cuenta</string>
+
+
+    <!--Drawer layout - menu lateral-->
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+
 </resources>
