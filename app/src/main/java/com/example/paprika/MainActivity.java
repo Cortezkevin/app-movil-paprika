@@ -19,13 +19,15 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity{
 
-    private static int SPLASH_SCREEN = 5000;
+    //tiempo de duracion de la animacion - tiempo de retraso de la ejecucion del runnable
+    private static int SPLASH_SCREEN = 5000; //--> 5000 milisegundos
 
     //Variables
     private ImageView image;
     private TextView logo;
     private TextView slogan;
 
+    //variables de animacion
     Animation topAnin, bottomAnin;
 
     @Override
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity{
         topAnin = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnin = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
-
+        //instanciamos las variables con los componentes de la vista(layout - xml)
         image = findViewById(R.id.imageView);
         logo = findViewById(R.id.textView);
         slogan = findViewById(R.id.textView2);
@@ -49,22 +51,29 @@ public class MainActivity extends AppCompatActivity{
         logo.setAnimation(bottomAnin);
         slogan.setAnimation(bottomAnin);
 
-
-        new Handler().postDelayed(new Runnable() {
+        //Handler (Un controlador que permite enviar y procesar)
+        //Handler -> sirve para programar mensajes o ejecutables para que se ejecuten en algún momento en el futuro
+        //Handler().postDelayed() -> hace que lo que pongamos en "Runnable" se ejecute después de que transcurra una cantidad de tiempo especificado
+        new Handler().postDelayed(new Runnable() { //handler().postDelayed(new Runnable -> que vamos a ejecutar , long delayMillis -> (cuanto tiempo de retraso tendra esa ejecucion)))
+            // al crear el runnable se define un método sin argumentos llamado run, donde colocaremos lo que queremso ejecutar
             @Override
             public void run() {
+                //direccionamos al loginActivity con un intent
+                                  //Intent("donde estas", "a donde vas")
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                //((NavigationHost) MainActivity.this).navigateTo(new LoginFragment(), true);
-
+                //Pair<F , S> -> contenedor que nos sirve para enviar dos objetos
                 Pair[] pairs = new Pair[2];
+                                                //Enviamos el componente(image) y el nombre de la transicion(logo_image) - que esta en el xml ->(android:transitionName="logo_image")
                 pairs[0] = new Pair<View, String>(image, "logo_image");
                 pairs[1] = new Pair<View, String>(logo, "logo_text");
 
+                //agregamos opciones adicionales de como se debe ejecutar el activity al redireccionar
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
 
+                //iniciamos el intent - ejecutamos el intent y le agregamos la transicion(animaciones) con el options.toBundle()
                 startActivity(intent, options.toBundle());
             }
-        }, SPLASH_SCREEN);
+        },/*tiempo de retraso*/ SPLASH_SCREEN );
 
     }
 

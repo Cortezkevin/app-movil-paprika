@@ -28,7 +28,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationHost{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        //si no hay nada en el activity
         if(savedInstanceState == null){
+            // agregamos un fragment
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.container, new LoginFragment())
@@ -36,15 +38,23 @@ public class MenuActivity extends AppCompatActivity implements NavigationHost{
         }
     }
 
+    //Metodo navigateTo implementado de la interfaz NavigationHost
+    //sirve para redireccionarnos entre fagmentos
+    //recibe como parametros un fragment (que fragmento vamos a mostrar) y un boolean( si se podra regresar a la vista anterior)
     @Override
     public void navigateTo(Fragment fragment, boolean addToBackStack) {
-        FragmentTransaction transaction = getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, fragment);
+        //craemos un objeto de tipo fragmentTransaccion
+        FragmentTransaction transaction = getSupportFragmentManager() //usamos el getSupportFragmentManager() para configurar la transaccion
+                .beginTransaction() //iniciamos las operaciones de la transaccion que pueden ser add, replace o remove
+                .replace(R.id.container, fragment); ////usamos el replace para reemplazar el fragment actual por el nuevo, y nos cambia de vista
+                //replace("el contenedor donde estan los fragmentos", "el fragmento que vamos a colocar")
+
+        // si es true se puede regresar o volver
         if(addToBackStack == true){
-            transaction.addToBackStack(null);
+            transaction.addToBackStack(null); //permite que se regrese a la vista anterior
         }
-        transaction.commit();
+
+        transaction.commit();//aplicamos la configuracion del transaccion
     }
 
 }

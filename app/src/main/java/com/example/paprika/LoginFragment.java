@@ -21,6 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class LoginFragment extends Fragment {
 
+    //variables
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private ActionBarDrawerToggle toggle;
@@ -31,18 +32,28 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
+        //instanciamos o enlazamos los componentes con la vista
         drawerLayout = view.findViewById(R.id.drawer_layout);
         navigationView = view.findViewById(R.id.nav_view);
+
+        //mostramos las opciones del menu
         setHasOptionsMenu(true);
+
+        //agregamos el toolbar a la vista
         setUpToolbar(view);
 
+        //instanciamos el toggle -> icono de hamburguesa
         toggle = setUpDrawerToggle();
+
+        //agregamos el toggle
         drawerLayout.addDrawerListener(toggle);
+
         toggle.syncState(); //mostrar el toggle
 
         return view;
     }
 
+    //metodo que agrega el toolbar a la vista
     private void setUpToolbar(View view) {
         toolbar = view.findViewById(R.id.app_bar); //instaciamos como toolbar al id app_bar
 
@@ -64,17 +75,20 @@ public class LoginFragment extends Fragment {
         );
     }
 
+    //inflamos o agregamos el menu que creamos al menu del toolbar
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) { //creamos estado inicial del menu
+        //inflamos o agregamos el menu que creamos al menu del toolbar
         menuInflater.inflate(R.menu.toolbar_menu, menu);  //inflamos el menu con el xml
         super.onCreateOptionsMenu(menu, menuInflater);
     }
 
+    //metodo que se ejecuta cuando seleccionamos un item del menu
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //abrimos y cerramos el drawerLayout con el toggle
-        if(toggle.onOptionsItemSelected(item)){
-            return true;
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //abrimos y cerramos el drawerLayout con el toggle(icono de hamburguesa)
+        if(toggle.onOptionsItemSelected(item)){//si el icono de hamburguesa es seleccionado
+            return true;        //true -> se abre el menu lateral(drawermenu - drawerlayout)
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);// de lo contrario false
     }
 }
