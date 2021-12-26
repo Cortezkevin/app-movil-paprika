@@ -33,7 +33,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationHost{
             // agregamos un fragment
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.container, new LoginFragment())
+                    .add(R.id.container, new CatalogueFragment())
                     .commit();
         }
     }
