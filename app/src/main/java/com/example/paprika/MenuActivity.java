@@ -3,6 +3,7 @@ package com.example.paprika;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -16,7 +17,9 @@ import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MenuActivity extends AppCompatActivity implements NavigationHost{
+import java.util.zip.Inflater;
+
+public class MenuActivity extends AppCompatActivity implements NavigationHost, NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
@@ -36,7 +39,23 @@ public class MenuActivity extends AppCompatActivity implements NavigationHost{
                     .add(R.id.container, new CatalogueFragment())
                     .commit();
         }
+        //instanciamos o enlazamos los componentes con la vista
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.app_bar);
+
+        setSupportActionBar(toolbar);
+
+        navigationView.setNavigationItemSelectedListener(this);
+        //instanciamos el toggle -> icono de hamburguesa
+        toggle = setUpDrawerToggle();
+
+        //agregamos el toggle
+        drawerLayout.addDrawerListener(toggle);
+
+        toggle.syncState(); //mostrar el toggle
     }
+
 
     //Metodo navigateTo implementado de la interfaz NavigationHost
     //sirve para redireccionarnos entre fagmentos
@@ -56,5 +75,32 @@ public class MenuActivity extends AppCompatActivity implements NavigationHost{
 
         transaction.commit();//aplicamos la configuracion del transaccion
     }
+
+    public ActionBarDrawerToggle setUpDrawerToggle(){  //agregamos el toggle(icono de hamburguesa al toolbar)
+        return new ActionBarDrawerToggle(this,
+                drawerLayout,
+                toolbar,
+                R.string.drawer_open,
+                R.string.drawer_close
+        );
+    }
+
+    //metodo que se ejecuta cuando seleccionamos un item del menu de barra
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //abrimos y cerramos el drawerLayout con el toggle(icono de hamburguesa)
+        if(toggle.onOptionsItemSelected(item)){//si el icono de hamburguesa es seleccionado
+            return true;        //true -> se abre el menu lateral(drawermenu - drawerlayout)
+        }
+        return super.onOptionsItemSelected(item);// de lo contrario false
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        //programar cambio de fragmentos
+
+        return false;
+    }
+
+
 
 }

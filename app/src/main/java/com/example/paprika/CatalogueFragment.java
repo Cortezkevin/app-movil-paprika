@@ -35,7 +35,7 @@ public class CatalogueFragment extends Fragment {
     List<Category> categoryList = new ArrayList<>();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saverInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saverInstanceState) {
         View view = inflater.inflate(R.layout.fragment_catalogue, container, false);
 
         getProducts(view);
@@ -44,7 +44,7 @@ public class CatalogueFragment extends Fragment {
         return view;
     }
 
-    public void getProducts(View view){
+    public void getProducts(View view) {
         ProductService productService = RetrofitService.getRetrofit().create(ProductService.class);
         Call<List<Product>> call = productService.getProducts();
         call.enqueue(new Callback<List<Product>>() {
@@ -70,33 +70,35 @@ public class CatalogueFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
-                Log.e("ERROR", ""+t.getMessage());
+                Log.e("ERROR", "" + t.getMessage());
             }
         });
     }
 
-    public void getCategories(View view){
-        CategoryService  categoryService = RetrofitService.getRetrofit().create(CategoryService.class);
+    public void getCategories(View view) {
+        CategoryService categoryService = RetrofitService.getRetrofit().create(CategoryService.class);
         Call<List<Category>> callCategory = categoryService.getCategories();
         callCategory.enqueue(new Callback<List<Category>>() {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
-                categoryList = response.body();
-                RecyclerView recyclerViewCategories = view.findViewById(R.id.recycler_view_categories);
-                recyclerViewCategories.setHasFixedSize(true);
-                recyclerViewCategories.setLayoutManager(new GridLayoutManager(getContext(), 1, RecyclerView.HORIZONTAL, false));
-                CategoryRecyclerAdapter adapterCategories = new CategoryRecyclerAdapter(categoryList);
-                recyclerViewCategories.setAdapter(adapterCategories);
+                if (response.isSuccessful()) {
+                    categoryList = response.body();
+                    RecyclerView recyclerViewCategories = view.findViewById(R.id.recycler_view_categories);
+                    recyclerViewCategories.setHasFixedSize(true);
+                    recyclerViewCategories.setLayoutManager(new GridLayoutManager(getContext(), 1, RecyclerView.HORIZONTAL, false));
+                    CategoryRecyclerAdapter adapterCategories = new CategoryRecyclerAdapter(categoryList);
+                    recyclerViewCategories.setAdapter(adapterCategories);
 
-                int largePaddingCategory = getResources().getDimensionPixelSize(R.dimen.category_grid_spacing);
-                int smallPaddingCategory = getResources().getDimensionPixelSize(R.dimen.category_grid_spacing_small);
-                recyclerViewCategories.addItemDecoration(new CategoryGridItemDecoration(largePaddingCategory,smallPaddingCategory));
+                    int largePaddingCategory = getResources().getDimensionPixelSize(R.dimen.category_grid_spacing);
+                    int smallPaddingCategory = getResources().getDimensionPixelSize(R.dimen.category_grid_spacing_small);
+                    recyclerViewCategories.addItemDecoration(new CategoryGridItemDecoration(largePaddingCategory, smallPaddingCategory));
+                }
 
             }
 
             @Override
             public void onFailure(Call<List<Category>> call, Throwable t) {
-
+                Log.e("ERROR", "" + t.getMessage());
             }
         });
     }

@@ -60,8 +60,9 @@ public class ProductDetailsFragment extends Fragment {
     double dsc = 0.0;
     // cantidad de unidades del producto para hacer el descuento
     int cant = 0;
-    // subtotal del pedido, precio por cantidad
+    //precio unitario del producto
     Double price_unit_product = 0.0;
+    // subtotal del pedido, precio por cantidad
     Double subtotal = 0.0;
 
     @Override
@@ -134,19 +135,25 @@ public class ProductDetailsFragment extends Fragment {
             public void onResponse(Call<Product> call, Response<Product> response) {
                 if (response.isSuccessful()) {
                     Product obj = response.body();
+
                     id.setText(obj.getId_product());
                     name.setText(obj.getName());
                     mark.setText(obj.getMark());
                     price.setText("S/." + obj.getPrice().toString());
+
                     subtotal_price.setText(obj.getPrice().toString());
                     price_unit_product = obj.getPrice();
                     subtotal = obj.getPrice();
+
                     setDiscountCantProducts(obj.getPrice());
-                    discount.setText("Descuento de "+dsc*100+"% a partir de "+ cant +" unidades");
+
+                    discount.setText("Descuento de "+Math.round(dsc*100)+"% a partir de "+ cant +" unidades");
+
                     description.setText(obj.getDescription());
 
                     Date date = obj.getExpiration_date();
                     expiration_date.setText(DateFormat.getDateInstance().format(date));
+
                     stock.setText(obj.getStock().toString());
 
                     ImageRequester imageRequester = ImageRequester.getInstance();

@@ -21,68 +21,129 @@
             android:layout_height="wrap_content"
             android:textSize="30dp"
             android:layout_gravity="center"
-            android:text="FRAGMENT PRODUCT CRUD"/>
-        <RelativeLayout
+            android:text="FRAGMENT PRODUCT"/>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="10dp">
-            <TextView
-                android:id="@+id/text_product_name"
-                android:layout_width="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name"
-                android:textSize="30dp"></TextView>
-            <TextView
-                android:id="@+id/text_product_mark"
-                android:layout_width="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre"
+                    android:textStyle="bold"
+                    android:textSize="20dp"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Marca"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:layout_alignParentEnd="true"></TextView>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mark"
-                android:textSize="30dp"
-                android:layout_alignParentEnd="true"></TextView>
-        </RelativeLayout>
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="10dp">
+                <TextView
+                    android:layout_marginTop="-8dp"
+                    android:id="@+id/text_product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textSize="22dp"></TextView>
+                <TextView
+                    android:layout_marginTop="-8dp"
+                    android:id="@+id/text_product_mark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mark"
+                    android:textSize="22dp"
+                    android:layout_alignParentEnd="true"></TextView>
+            </RelativeLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio"
+            android:textStyle="bold"
+            android:textSize="20dp"></TextView>
         <TextView
             android:layout_gravity="center"
-            android:paddingTop="10dp"
             android:id="@+id/text_product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Price"
-            android:textSize="30dp"></TextView>
-
+            android:textSize="22dp"></TextView>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textStyle="bold"
+            android:textSize="20dp"></TextView>
         <TextView
             android:layout_gravity="center"
-            android:paddingTop="10dp"
             android:id="@+id/text_product_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
-            android:textSize="25dp"></TextView>
+            android:textSize="22dp"></TextView>
         <RelativeLayout
-            android:paddingTop="85dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp">
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="F. Vencimiento"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stock"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_alignParentEnd="true"></TextView>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
             <TextView
                 android:id="@+id/text_product_expiration_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Expiration Date"
-                android:textSize="20dp"></TextView>
+                android:textSize="22dp"></TextView>
             <TextView
                 android:id="@+id/text_product_stock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Stock"
-                android:textSize="20dp"
+                android:textSize="22dp"
                 android:layout_alignParentEnd="true"></TextView>
         </RelativeLayout>
         <TextView
             android:id="@+id/discount_product"
             android:layout_marginTop="10dp"
-            android:textSize="25dp"
+            android:textAlignment="center"
+            android:textSize="22dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Descuento"
@@ -91,7 +152,7 @@
         <TextView
             android:id="@+id/subtotal_price_product"
             android:layout_marginTop="10dp"
-            android:textSize="25dp"
+            android:textSize="22dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="subtotal"
@@ -106,12 +167,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_decrease"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="120dp"
-                android:layout_height="65dp"
+                android:layout_height="63dp"
                 android:layout_alignParentStart="true"
                 android:textSize="23dp"
                 app:icon="@drawable/menos"
@@ -122,26 +182,29 @@
                 style="@style/Widget.MaterialComponents.TimePicker.Display.TextInputEditText"
                 android:id="@+id/product_amount"
                 android:layout_width="150dp"
-                android:layout_height="65dp"
+                android:layout_height="63dp"
                 android:layout_toRightOf="@+id/button_decrease"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="20dp" />
+                android:textSize="25dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_increase"
+                app:icon="@drawable/mas"
+                app:iconGravity="textStart"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="120dp"
-                android:layout_height="65dp"
+                android:layout_height="63dp"
                 android:layout_alignParentEnd="true"
                 tools:ignore="SpeakableTextPresentCheck" />
         </RelativeLayout>
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textSize="25dp"
             android:text="Add"
             />
     </LinearLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginFragment"
+    tools:context=".LoginActivity"
     android:orientation="vertical"
     android:background="#ffff"
     android:padding="20dp">
@@ -38,7 +38,7 @@
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/username"
+            android:id="@+id/text_input_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/user_email_login"
@@ -48,13 +48,14 @@
             app:endIconMode="clear_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_edit_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password"
+            android:id="@+id/text_input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_login"
@@ -63,6 +64,7 @@
             android:transitionName="password_tran"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_edit_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"/>
