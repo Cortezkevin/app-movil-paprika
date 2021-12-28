@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.paprika.API.Apis.ProductAPI;
 import com.example.paprika.API.RetrofitService;
 import com.example.paprika.API.Service.CategoryService;
 import com.example.paprika.API.Service.ProductService;

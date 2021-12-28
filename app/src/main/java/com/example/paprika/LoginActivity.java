@@ -99,9 +99,9 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                         }else if(u.getEmail().equals(email_text.getText().toString())
                                 || u.getPassword().equals(password_text.getText().toString())){
-                            Toast.makeText(getApplicationContext(), "Email o password invalidos", Toast.LENGTH_SHORT);
+                            Toast.makeText(LoginActivity.this, "Email o password invalidos", Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(getApplicationContext(), "Email o password invalidos", Toast.LENGTH_SHORT);
+                            Toast.makeText(LoginActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
