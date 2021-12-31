@@ -13,6 +13,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/text_cant_products"
+                    android:gravity="center"
+                    android:text="0"
+                    android:layout_width="60dp"
+                    android:layout_height="37dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@color/black"
+                    android:textColor="@color/white" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/show_car_shop"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginLeft="80dp"
+                    android:layout_width="305dp"
+                    android:layout_height="wrap_content"
+                    android:text="Ver Carrito de Compras"
+                    android:layout_alignParentEnd="true"
+                    />
+            </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,15 +52,16 @@
                     android:layoutAnimation="@null"
                     android:paddingStart="@dimen/product_grid_spacing"
                     android:paddingEnd="@dimen/product_grid_spacing"
-                    app:layout_behavior="Product">
+                    app:layout_behavior="Category">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler_view_products"
+                        android:id="@+id/recycler_view_categories"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </androidx.core.widget.NestedScrollView>
 
                 <androidx.core.widget.NestedScrollView
+                    android:layout_marginTop="100dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -44,10 +69,9 @@
                     android:layoutAnimation="@null"
                     android:paddingStart="@dimen/product_grid_spacing"
                     android:paddingEnd="@dimen/product_grid_spacing"
-                    app:layout_behavior="Category">
-
+                    app:layout_behavior="Product">
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler_view_categories"
+                        android:id="@+id/recycler_view_products"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </androidx.core.widget.NestedScrollView>

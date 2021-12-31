@@ -7,16 +7,20 @@ import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Stack;
 import java.util.zip.Inflater;
 
 public class MenuActivity extends AppCompatActivity implements NavigationHost, NavigationView.OnNavigationItemSelectedListener {
@@ -26,6 +30,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationHost, N
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
 
+    private FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +41,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationHost, N
             // agregamos un fragment
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.container, new CatalogueFragment())
+                    .add(R.id.container, new CatalogueFragment(), "CATALOGUE_FRAGMENT")
                     .commit();
         }
         //instanciamos o enlazamos los componentes con la vista
@@ -55,7 +60,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationHost, N
 
         toggle.syncState(); //mostrar el toggle
     }
-
 
     //Metodo navigateTo implementado de la interfaz NavigationHost
     //sirve para redireccionarnos entre fagmentos
@@ -96,11 +100,46 @@ public class MenuActivity extends AppCompatActivity implements NavigationHost, N
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        //programar cambio de fragmentos
 
+        //FRAGMENTO ACTUAL
+        Fragment actualFragment = fragmentManager.findFragmentById(R.id.container);
+        FragmentTransaction transaction = getSupportFragmentManager()
+                .beginTransaction();
+        //programar cambio de fragmentos
+        switch (item.getItemId()){
+            case R.id.nav_home:
+                fragmentManager = getSupportFragmentManager();
+                CatalogueFragment catalogueFragment = (CatalogueFragment) fragmentManager.findFragmentByTag("CATALOGUE_FRAGMENT");
+
+                if(catalogueFragment != null){
+                    transaction.hide(actualFragment)
+                            .show(catalogueFragment);
+                }else{
+                    transaction.hide(actualFragment)
+                            .add(R.id.container, new CatalogueFragment());
+                }
+                transaction.addToBackStack(null);
+                transaction.commit();
+                return true;
+        }
         return false;
     }
 
-
+    @Override
+    public void hideShowFragment(Fragment oldFragment, Fragment newFragment, String tag){
+        fragmentManager = getSupportFragmentManager();
+        //FragmentTransaction transaction = oldFragment.getParentFragmentManager()
+        FragmentTransaction transaction = fragmentManager
+                .beginTransaction();
+        if(newFragment.isAdded()){
+            transaction.hide(oldFragment)
+                    .show(newFragment);
+        }else{
+            transaction.hide(oldFragment)
+                    .add(R.id.container, newFragment, tag);
+        }
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
 }

@@ -19,6 +19,11 @@
             android:title="Event"
             android:icon="@drawable/ic_baseline_event_24"
             />
+        <item
+            android:id="@+id/nav_car_shop"
+            android:title="Car Shop"
+            android:icon="@drawable/car_shop"
+            />
     </group>
 
     <item android:title="Social">

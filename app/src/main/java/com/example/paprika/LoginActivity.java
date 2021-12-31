@@ -74,7 +74,8 @@ public class LoginActivity extends AppCompatActivity {
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                /*Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                startActivity(intent);*/
                 if((email_text.getText().toString().equals(""))
                 && (password_text.getText().toString().equals(""))){
                     email_tran.setError("Campo obligatorio");
@@ -97,11 +98,10 @@ public class LoginActivity extends AppCompatActivity {
 
                             //iniciamos el intent - ejecutamos el intent
                             startActivity(intent);
+                            Toast.makeText(LoginActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
                         }else if(u.getEmail().equals(email_text.getText().toString())
                                 || u.getPassword().equals(password_text.getText().toString())){
                             Toast.makeText(LoginActivity.this, "Email o password invalidos", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(LoginActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

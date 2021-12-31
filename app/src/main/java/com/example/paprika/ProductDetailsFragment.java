@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,15 +16,21 @@ import androidx.fragment.app.FragmentResultListener;
 
 import com.android.volley.toolbox.NetworkImageView;
 import com.example.paprika.API.RetrofitService;
+import com.example.paprika.API.Service.OrderDetailService;
 import com.example.paprika.API.Service.ProductService;
+import com.example.paprika.Model.Order;
+import com.example.paprika.Model.OrderDetails;
 import com.example.paprika.Model.Product;
 import com.example.paprika.Network.ImageRequester;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,13 +48,11 @@ public class ProductDetailsFragment extends Fragment {
     private TextView description;
     private TextView mark;
 
-    private TextInputEditText amount;
-    private MaterialButton increase;
-    private MaterialButton decrease;
-
 
     private TextView discount;
     private TextView subtotal_price;
+
+    String product_id;
 
 
     @Override
@@ -65,6 +70,11 @@ public class ProductDetailsFragment extends Fragment {
     // subtotal del pedido, precio por cantidad
     Double subtotal = 0.0;
 
+
+    //CARRITO
+    Product product_add_shop;
+    List<Product> list_car_shop = new ArrayList<>();
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product_details, container, false);
@@ -73,6 +83,7 @@ public class ProductDetailsFragment extends Fragment {
             @Override
             public void onFragmentResult(@NonNull String key, @NonNull Bundle bundle) {
                 getProductById(bundle.getString("product_id"));
+                product_id = bundle.getString("product_id");
             }
         });
 
@@ -85,45 +96,10 @@ public class ProductDetailsFragment extends Fragment {
         expiration_date = view.findViewById(R.id.text_product_expiration_date);
         description = view.findViewById(R.id.text_product_description);
 
-        amount = view.findViewById(R.id.product_amount);
-        increase = view.findViewById(R.id.button_increase);
-        decrease = view.findViewById(R.id.button_decrease);
 
         discount = view.findViewById(R.id.discount_product);
         subtotal_price = view.findViewById(R.id.subtotal_price_product);
 
-        amount.setText(amount_product + "");
-
-
-        increase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int max_amount = Integer.parseInt(stock.getText().toString());
-                if (amount_product < max_amount) {
-                    amount_product += 1;
-                    amount.setText(amount_product + "");
-
-                    subtotal = subtotal + price_unit_product ;
-                    subtotal_price.setText(subtotal + "");
-                }else{
-                    amount.setText(amount_product+"");
-                }
-            }
-        });
-        decrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (amount_product >= 2) {
-                    amount_product -= 1;
-                    amount.setText(amount_product + "");
-
-                    subtotal = subtotal - price_unit_product ;
-                    subtotal_price.setText(subtotal + "");
-                } else {
-                    amount.setText(amount_product + "");
-                }
-            }
-        });
         return view;
     }
 
@@ -135,6 +111,7 @@ public class ProductDetailsFragment extends Fragment {
             public void onResponse(Call<Product> call, Response<Product> response) {
                 if (response.isSuccessful()) {
                     Product obj = response.body();
+                    product_add_shop = response.body();
 
                     id.setText(obj.getId_product());
                     name.setText(obj.getName());
@@ -179,5 +156,27 @@ public class ProductDetailsFragment extends Fragment {
             cant = 8;
             dsc = 0.04;
         }
+    }
+
+    public void addCarDB(OrderDetails orderDetails){
+        OrderDetailService orderDetailService = RetrofitService.getRetrofit().create(OrderDetailService.class);
+        Call<OrderDetails> call = orderDetailService.insertOrderDetail(orderDetails);
+        call.enqueue(new Callback<OrderDetails>() {
+            @Override
+            public void onResponse(Call<OrderDetails> call, Response<OrderDetails> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(new MenuActivity(), "Producto agregado al carrito", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OrderDetails> call, Throwable t) {
+                Log.e("ERROR",t.getMessage());
+            }
+        });
+    }
+
+    public void createOrder(Order order){
+
     }
 }
