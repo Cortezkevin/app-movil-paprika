@@ -101,13 +101,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationHost, N
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        //FRAGMENTO ACTUAL
+      /*  //FRAGMENTO ACTUAL
         Fragment actualFragment = fragmentManager.findFragmentById(R.id.container);
         FragmentTransaction transaction = getSupportFragmentManager()
-                .beginTransaction();
+                .beginTransaction();*/
         //programar cambio de fragmentos
         switch (item.getItemId()){
-            case R.id.nav_home:
+           /* case R.id.nav_home:
                 fragmentManager = getSupportFragmentManager();
                 CatalogueFragment catalogueFragment = (CatalogueFragment) fragmentManager.findFragmentByTag("CATALOGUE_FRAGMENT");
 
@@ -120,6 +120,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationHost, N
                 }
                 transaction.addToBackStack(null);
                 transaction.commit();
+                return true;*/
+            case R.id.nav_product:
+                navigateTo(new ProductInsertFragment(), true);
                 return true;
         }
         return false;

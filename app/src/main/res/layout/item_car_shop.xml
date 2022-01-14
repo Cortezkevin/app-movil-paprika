@@ -75,29 +75,21 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/product_amount_decrease"
-                    android:layout_width="35dp"
-                    android:layout_height="33dp"
-                    app:icon="@drawable/menos_16"
-                    app:iconGravity="textStart|end"/>
                 <TextView
-                    android:layout_marginLeft="3dp"
-                    android:text="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="Cantidad"
+                    android:textStyle="bold"
                     android:gravity="center"
+                    />
+                <TextView
                     android:id="@+id/text_product_amount"
                     android:layout_width="40dp"
                     android:layout_height="30dp"
-                    android:layout_toRightOf="@+id/product_amount_decrease"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/product_amount_increase"
-                    android:layout_width="35dp"
-                    android:layout_height="33dp"
+                    android:layout_marginLeft="3dp"
                     android:layout_alignParentEnd="true"
-                    app:iconGravity="textStart|end"
-                    app:icon="@drawable/mas_16"/>
+                    android:gravity="center"
+                    android:text="1" />
 
             </RelativeLayout>
         </LinearLayout>

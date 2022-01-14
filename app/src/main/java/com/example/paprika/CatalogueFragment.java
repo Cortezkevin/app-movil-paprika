@@ -21,6 +21,8 @@ import com.example.paprika.Adapter.ProductGridItemDecoration;
 import com.example.paprika.Adapter.ProductRecyclerAdapter;
 import com.example.paprika.Model.Category;
 import com.example.paprika.Model.Product;
+import com.example.paprika.Model.ProductCar;
+import com.example.paprika.Model.ProductCarConvert;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ import retrofit2.Response;
 public class CatalogueFragment extends Fragment {
 
     static List<Product> productList = new ArrayList<>();
-    static List<Product> carshopList = new ArrayList<>();
+    static List<ProductCar> carshopList = new ArrayList<>();
 
     static List<Category> categoryList = new ArrayList<>();
 
@@ -71,11 +73,12 @@ public class CatalogueFragment extends Fragment {
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if (response.isSuccessful()) {
                     productList = response.body();
+                    List<ProductCar> productConvertList = ProductCarConvert.convertProduct(productList);
                     recyclerViewProducts.setHasFixedSize(true);
 
                     recyclerViewProducts.setLayoutManager(new GridLayoutManager(getContext(), 3, RecyclerView.VERTICAL, false));
 
-                    adapterProducts = new ProductRecyclerAdapter(getContext(), text_cant_products, show_car_shop, carshopList, productList, CatalogueFragment.this);
+                    adapterProducts = new ProductRecyclerAdapter(getContext(), text_cant_products, show_car_shop, carshopList, productConvertList, CatalogueFragment.this);
 
 
                     recyclerViewProducts.setAdapter(adapterProducts);

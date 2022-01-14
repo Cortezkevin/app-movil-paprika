@@ -4,19 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/drawable/ic_baseline_profile_24.xml" value="0.2064814814814815" />
-        <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/activity_menu.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
+        <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/activity_sign_up.xml" value="0.18" />
         <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/category_card.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/fragment_car_shop.xml" value="0.17192982456140352" />
+        <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/fragment_car_shop.xml" value="0.21" />
         <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/fragment_catalogue.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/fragment_login.xml" value="0.17133956386292834" />
         <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/fragment_product.xml" value="0.1" />
         <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/fragment_product_details.xml" value="0.33" />
-        <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/item_car_shop.xml" value="0.5" />
+        <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/fragment_product_insert.xml" value="0.22105263157894736" />
+        <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/item_car_shop.xml" value="0.25" />
         <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/nav_header.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/product_card.xml" value="0.1" />
+        <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/layout/product_card.xml" value="0.33" />
         <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/menu/drawer_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/USUARIO/Desktop/Android-Proyectos/Paprika/app/src/main/res/menu/toolbar_menu.xml" value="0.20416666666666666" />
       </map>

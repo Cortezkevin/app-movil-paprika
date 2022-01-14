@@ -121,29 +121,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ProductViewHolde
             holder.product_price.setText("S/."+product.getPrice().toString());
             imageRequester.setImageFromUrl(holder.product_image, product.getUrl_image());
 
-            holder.product_amount_increase.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    holder.product_amount.setText(""+(Integer.parseInt(holder.product_amount.getText().toString().trim()) + 1 ));
-                    text_total.setText(""+(total += product.getPrice()));
-                    product.setAmount(product.getAmount()+1);
-                }
-            });
-
-            holder.product_amount_decrease.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int amount_product = Integer.parseInt(holder.product_amount.getText().toString().trim());
-                    if(amount_product >= 2){
-                        holder.product_amount.setText(""+ (amount_product - 1 ));
-                        text_total.setText(""+(total -= product.getPrice()));
-                    }else if(amount_product >= 1){
-                        list_test_product.remove(product);
-                        list_test_product.size();
-                    }
-
-                }
-            });
+            holder.product_amount.setText(""+product.getAmount());
         }
     }
 
@@ -161,8 +139,6 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ProductViewHolde
         public TextView product_price;
 
         public TextView product_amount;
-        public MaterialButton product_amount_increase;
-        public MaterialButton product_amount_decrease;
 
         ProductViewHolder(View itemView){
             super(itemView);
@@ -173,8 +149,6 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ProductViewHolde
             product_price = itemView.findViewById(R.id.product_price);
 
             product_amount = itemView.findViewById(R.id.text_product_amount);
-            product_amount_increase = itemView.findViewById(R.id.product_amount_increase);
-            product_amount_decrease = itemView.findViewById(R.id.product_amount_decrease);
         }
     }
 

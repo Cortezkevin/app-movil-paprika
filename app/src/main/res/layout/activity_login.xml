@@ -80,9 +80,10 @@
             android:layout_margin="5dp"/>
 
         <com.google.android.material.button.MaterialButton
+            android:backgroundTint="@color/colorPrimaryDark"
             android:id="@+id/login_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="@string/login_button"
             android:layout_marginBottom="5dp"
             android:transitionName="button_tran"/>

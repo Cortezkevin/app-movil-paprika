@@ -21,6 +21,7 @@
     <string name="product_discount">Discount</string>
     <string name="category_name">Name</string>
     <string name="category_description">Description</string>
+    <string name="product_stock">Stock</string>
 
 
 </resources>

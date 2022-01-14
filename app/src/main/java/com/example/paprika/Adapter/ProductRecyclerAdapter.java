@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.toolbox.NetworkImageView;
 import com.example.paprika.CarShopFragment;
 import com.example.paprika.Model.Product;
+import com.example.paprika.Model.ProductCar;
 import com.example.paprika.NavigationHost;
 import com.example.paprika.Network.ImageRequester;
 import com.example.paprika.ProductDetailsFragment;
@@ -33,14 +34,14 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
     Context context;
     TextView text_cant_products;
     MaterialButton show_car_shop;
-    List<Product> car_shop_list;
+    List<ProductCar> car_shop_list;
 
-    private List<Product> productlist;
+    private List<ProductCar> productlist;
     private ImageRequester imageRequester;
     private Fragment catalogueFragment;
 
 
-    public ProductRecyclerAdapter(Context context, TextView text_cant_products, MaterialButton show_car_shop, List<Product> car_shop_list, List<Product> productList, Fragment fragment){
+    public ProductRecyclerAdapter(Context context, TextView text_cant_products, MaterialButton show_car_shop, List<ProductCar> car_shop_list, List<ProductCar> productList, Fragment fragment){
         this.context = context;
         this.text_cant_products =  text_cant_products;
         this.show_car_shop = show_car_shop;
@@ -61,10 +62,12 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
     @Override
     public void onBindViewHolder(@NonNull final ProductViewHolder holder, int position) {
         if(productlist != null && position < productlist.size()){
-            Product product = productlist.get(position);
+            ProductCar product = productlist.get(position);
             holder.product_name.setText(product.getName());
             holder.product_mark.setText(product.getMark());
             holder.product_price.setText("S/."+product.getPrice().toString());
+            holder.product_amount.setText(""+product.getAmount());
+            holder.product_stock.setText(""+product.getStock());
             holder.add_product.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -104,6 +107,30 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
                     ((NavigationHost) catalogueFragment.getActivity()).hideShowFragment(catalogueFragment, new CarShopFragment(), "CAR_SHOP");
                 }
             });
+
+            holder.product_amount_increase.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    holder.product_amount.setText(""+(Integer.parseInt(holder.product_amount.getText().toString().trim()) + 1 ));
+                    product.setAmount(product.getAmount()+1);
+                }
+            });
+
+            holder.product_amount_decrease.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int amount_product = Integer.parseInt(holder.product_amount.getText().toString().trim());
+                    if(amount_product >= 2){
+                        holder.product_amount.setText(""+ (amount_product - 1 ));
+                        product.setAmount(amount_product-1);
+                    }else if(amount_product >= 1){
+                        holder.product_amount.setText(""+ amount_product);
+                        product.setAmount(amount_product);
+                        notifyDataSetChanged(); //// actualizar el recycler
+                    }
+
+                }
+            });
         }
     }
 
@@ -118,8 +145,12 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         public TextView product_name;
         public TextView product_mark;
         public TextView product_price;
-        public TextView product_discount;
+        public TextView product_stock;
         public CheckBox add_product;
+
+        public TextView product_amount;
+        public MaterialButton product_amount_increase;
+        public MaterialButton product_amount_decrease;
 
         ProductViewHolder(View itemView){
             super(itemView);
@@ -128,8 +159,13 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
             product_name = itemView.findViewById(R.id.product_name);
             product_mark = itemView.findViewById(R.id.product_mark);
             product_price = itemView.findViewById(R.id.product_price);
+            product_stock = itemView.findViewById(R.id.product_stock);
 
             add_product = itemView.findViewById(R.id.add_product);
+
+            product_amount = itemView.findViewById(R.id.text_product_amount);
+            product_amount_increase = itemView.findViewById(R.id.product_amount_increase);
+            product_amount_decrease = itemView.findViewById(R.id.product_amount_decrease);
         }
     }
 

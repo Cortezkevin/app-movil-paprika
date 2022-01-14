@@ -31,10 +31,8 @@ public class CarShopFragment extends Fragment {
     CarAdapter carAdapter;
 
     TextView text_total;
-    List<Product> list_product_car_shop;
+    List<ProductCar> list_product_car_shop;
 
-
-    List<ProductCar> list_test_product;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedStateInstance){
@@ -43,10 +41,9 @@ public class CarShopFragment extends Fragment {
         getParentFragmentManager().setFragmentResultListener("product_car_list", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                list_product_car_shop = (List<Product>) result.getSerializable("list_car_products");
+                list_product_car_shop = (List<ProductCar>) result.getSerializable("list_car_products");
 
-                list_test_product = ProductCarConvert.convertProduct(list_product_car_shop);
-                carAdapter = new CarAdapter(getContext(), text_total, list_test_product);
+                carAdapter = new CarAdapter(getContext(), text_total, list_product_car_shop);
                 recycler_car_shop.setAdapter(carAdapter);
             }
         });
