@@ -124,6 +124,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationHost, N
             case R.id.nav_product:
                 navigateTo(new ProductInsertFragment(), true);
                 return true;
+
+            case R.id.nav_category:
+                navigateTo(new CategoryInsertFragment(), true);
+                return true;
         }
         return false;
     }

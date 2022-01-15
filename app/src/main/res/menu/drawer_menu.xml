@@ -29,6 +29,11 @@
             android:title="Product"
             android:icon="@drawable/product"
             />
+        <item
+            android:id="@+id/nav_category"
+            android:title="category"
+            android:icon="@drawable/product"
+            />
     </group>
 
     <item android:title="Social">
