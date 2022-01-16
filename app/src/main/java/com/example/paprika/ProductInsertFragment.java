@@ -73,7 +73,7 @@ public class ProductInsertFragment extends Fragment {
                 product.setMark(edit_text_product_mark.getText().toString());
                 product.setDescription(edit_text_product_description.getText().toString());
                 product.setUrl_image(edit_text_product_url.getText().toString());
-                //product.setExpiration_date(edit_text_product_expiration.getText().);
+                product.setExpiration_date(edit_text_product_expiration.getText().toString());
                 product.setPrice(Double.parseDouble(edit_text_product_price.getText().toString()));
                 product.setStock(Integer.parseInt(edit_text_product_stock.getText().toString()));
 
@@ -97,6 +97,7 @@ public class ProductInsertFragment extends Fragment {
             public void onResponse(Call<Product> call, Response<Product> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getContext(), "PRODUCTO REGISTRADO", Toast.LENGTH_SHORT).show();
+                    ((NavigationHost)getActivity()).navigateTo(new ProductFragment(), true);
                 }else{
                     Toast.makeText(getContext(), "ERROR AL REGISTRAR", Toast.LENGTH_SHORT).show();
                 }
@@ -139,7 +140,7 @@ public class ProductInsertFragment extends Fragment {
             public void onResponse(Call<List<Supplier>> call, Response<List<Supplier>> response) {
                 if(response.isSuccessful()){
                     for (Supplier s: response.body()) {
-                        categories.put(s.getName(), s.getId_supplier());
+                        suppliers.put(s.getName(), s.getId_supplier());
                     }
 
                     supplierList = response.body();

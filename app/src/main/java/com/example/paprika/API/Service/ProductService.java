@@ -6,8 +6,10 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ProductService {
@@ -20,4 +22,10 @@ public interface ProductService {
 
     @POST("api/v1/product/insert")
     Call<Product> insertProduct(@Body Product product);
+
+    @PUT("api/v1/product/update/{id}")
+    Call<Product> updateProduct(@Body Product product, @Path("id") String id);
+
+    @DELETE("api/v1/product/delete/{id}")
+    Call<Product> deleteProduct(@Path("id") String id);
 }
