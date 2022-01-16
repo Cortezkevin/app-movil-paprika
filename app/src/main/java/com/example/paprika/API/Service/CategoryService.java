@@ -16,4 +16,5 @@ public interface CategoryService {
 
     @POST("api/v1/category/insert")
     Call<Category> insertCategories(@Body Category c);
+
 }
