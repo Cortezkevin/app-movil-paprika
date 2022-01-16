@@ -128,8 +128,9 @@ public class ProductDetailsFragment extends Fragment {
 
                     description.setText(obj.getDescription());
 
-                    Date date = obj.getExpiration_date();
-                    expiration_date.setText(DateFormat.getDateInstance().format(date));
+                    /*Date date = obj.getExpiration_date();
+                    expiration_date.setText(DateFormat.getDateInstance().format(date));*/
+                    expiration_date.setText(obj.getExpiration_date());
 
                     stock.setText(obj.getStock().toString());
 

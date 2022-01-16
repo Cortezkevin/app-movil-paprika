@@ -122,7 +122,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationHost, N
                 transaction.commit();
                 return true;*/
             case R.id.nav_product:
-                navigateTo(new ProductInsertFragment(), true);
+                navigateTo(new ProductFragment(), true);
                 return true;
 
             case R.id.nav_category:
