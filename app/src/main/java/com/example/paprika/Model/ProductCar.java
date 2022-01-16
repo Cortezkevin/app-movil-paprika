@@ -11,7 +11,7 @@ public class ProductCar {
     private String mark;
     private String description;
     private String url_image;
-    private Date expiration_date;
+    private String expiration_date;
     private Double price;
     private Integer stock;
     private String state;
@@ -23,11 +23,11 @@ public class ProductCar {
 
     public ProductCar(Product p) {
         this(p.getId_product(), p.getId_category(), p.getId_supplier(), p.getName(), p.getMark(), p.getDescription(), p.getUrl_image()
-        ,p.getExpiration_date(), p.getPrice(),p.getStock(), p.getState(),1);
+                , p.getExpiration_date(), p.getPrice(), p.getStock(), p.getState(), 1);
     }
 
 
-    public ProductCar(String id_product, String id_category, String id_supplier, String name, String mark, String description, String url_image, Date expiration_date, Double price, Integer stock, String state, Integer amount) {
+    public ProductCar(String id_product, String id_category, String id_supplier, String name, String mark, String description, String url_image, String expiration_date, Double price, Integer stock, String state, Integer amount) {
         this.id_product = id_product;
         this.id_category = id_category;
         this.id_supplier = id_supplier;
@@ -98,11 +98,11 @@ public class ProductCar {
         this.url_image = url_image;
     }
 
-    public Date getExpiration_date() {
+    public String getExpiration_date() {
         return expiration_date;
     }
 
-    public void setExpiration_date(Date expiration_date) {
+    public void setExpiration_date(String expiration_date) {
         this.expiration_date = expiration_date;
     }
 
